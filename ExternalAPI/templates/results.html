@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Music Albums Search</title>
+  </head>
+  <body>
+    <h1>Albums for {{ artist }}</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>
+             <form action="/" method="post">
+              <input type="hidden" name="artist" value= {{ artist }}>
+              <input type="hidden" name="sort" value="strAlbum">
+              <button type="submit">Album Name</button>
+            </form>
+          </th>
+          <th>
+             <form action="/" method="post">
+              <input type="hidden" name="artist" value= {{ artist }}>
+              <input type="hidden" name="sort" value="intYearReleased">
+              <button type="submit">Release Year</button>
+            </form>
+          </th>
+          <th>
+              <b>Description</b>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for album in albums %}
+        <tr>
+          <td>{{ album.strAlbum }}</td>
+          <td>{{ album.intYearReleased }}</td>
+             <td>{{ album.strDescriptionEN }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <a href="/">Search another artist</a>
+  </body>
+</html>
