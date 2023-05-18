@@ -10,32 +10,41 @@
         <tr>
           <th>
              <form action="/" method="post">
-              <input type="hidden" name="artist" value= {{ artist }}>
+              <input type="hidden" name="artist" value= "{{ artist }}">
               <input type="hidden" name="sort" value="strAlbum">
+              <input type="hidden" name="reverse" value=True>
               <button type="submit">Album Name</button>
             </form>
           </th>
           <th>
              <form action="/" method="post">
-              <input type="hidden" name="artist" value= {{ artist }}>
+              <input type="hidden" name="artist" value= "{{ artist }}">
               <input type="hidden" name="sort" value="intYearReleased">
+              <input type="hidden" name="reverse" value=True>
               <button type="submit">Release Year</button>
             </form>
           </th>
-          <th>
-              <b>Description</b>
+         <th>
+             <form action="/" method="post">
+              <input type="hidden" name="artist" value= "{{ artist }}">
+              <input type="hidden" name="sort" value="strDescriptionEN">
+              <button type="submit">Description</button>
+            </form>
           </th>
         </tr>
       </thead>
       <tbody>
-        {% for album in albums %}
-        <tr>
-          <td>{{ album.strAlbum }}</td>
-          <td>{{ album.intYearReleased }}</td>
-             <td>{{ album.strDescriptionEN }}</td>
-        </tr>
-        {% endfor %}
-      </tbody>
+          {% for album in albums %}
+          <tr>
+            <td>{{ album.strAlbum }}</td>
+            <td>{{ album.intYearReleased }}</td>
+            <td>{{ album.strDescriptionEN }}</td>
+          </tr>
+          <tr>
+            <td colspan="3"><hr></td>
+          </tr>
+          {% endfor %}
+        </tbody>
     </table>
     <a href="/">Search another artist</a>
   </body>

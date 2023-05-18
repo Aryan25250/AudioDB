@@ -15,12 +15,12 @@ def index():
 
         print(albums)
         def sort(v):
-            if "sort" in request.form:
+            if "sort" in request.form and request.form["sort"] in v:
                 return v[request.form["sort"]]
             else:
                 return v["intYearReleased"]
 
-        albums.sort(key=sort)
+        albums.sort(key=sort,reverse=request.form["reverse"] or False)
 
         return render_template('results.html', artist=artist_name, albums=albums)
     return render_template('index.html')
