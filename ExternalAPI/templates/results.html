@@ -12,23 +12,52 @@
              <form action="/" method="post">
               <input type="hidden" name="artist" value= "{{ artist }}">
               <input type="hidden" name="sort" value="strAlbum">
-              <input type="hidden" name="reverse" value=True>
-              <button type="submit">Album Name</button>
+              <input type="hidden" name="oldSort" value= {{ oldSort }}>
+              <input type="hidden" name="reverse" value={{ reverse }}>
+
+              <button type="submit">
+                  {% if oldSort == "strAlbum" %}
+                      {% if reverse == True %}
+                      ^
+                      {%else%}
+                      V
+                      {%endif%}
+                  {%endif%}
+                Album Name</button>
             </form>
           </th>
           <th>
              <form action="/" method="post">
               <input type="hidden" name="artist" value= "{{ artist }}">
               <input type="hidden" name="sort" value="intYearReleased">
-              <input type="hidden" name="reverse" value=True>
-              <button type="submit">Release Year</button>
+              <input type="hidden" name="oldSort" value= {{ oldSort }}>
+              <input type="hidden" name="reverse" value={{ reverse }}>
+              <button type="submit">
+                   {% if oldSort == "intYearReleased" %}
+                      {% if reverse == True %}
+                      ^
+                      {%else%}
+                      V
+                      {%endif%}
+                  {%endif%}
+                  Release Year</button>
             </form>
           </th>
          <th>
              <form action="/" method="post">
               <input type="hidden" name="artist" value= "{{ artist }}">
               <input type="hidden" name="sort" value="strDescriptionEN">
-              <button type="submit">Description</button>
+              <input type="hidden" name="oldSort" value= {{ oldSort }}>
+              <input type="hidden" name="reverse" value={{ reverse }}>
+              <button type="submit">
+                  {% if oldSort == "strDescriptionEN" %}
+                      {% if reverse == True %}
+                      ^
+                      {%else%}
+                      V
+                      {%endif%}
+                  {%endif%}
+                  Description</button>
             </form>
           </th>
         </tr>

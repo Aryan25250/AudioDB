@@ -8,21 +8,33 @@ app = Flask(__name__)
 @app.route('/', methods=['GET', 'POST'])
 def index():
     if request.method == 'POST':
-        print(request.form)
         artist_name = request.form['artist']
         albums = search_albums(artist_name)
         save_albums_to_db(artist_name, albums)
 
-        print(albums)
         def sort(v):
             if "sort" in request.form and request.form["sort"] in v:
                 return v[request.form["sort"]]
             else:
                 return v["intYearReleased"]
 
-        albums.sort(key=sort,reverse=request.form["reverse"] or False)
 
-        return render_template('results.html', artist=artist_name, albums=albums)
+        if "reverse" in request.form:
+            isReversed = True
+            if request.form["oldSort"] == request.form["sort"]:
+                isReversed = not request.form["reverse"] == "True"
+
+            print(isReversed)
+
+            albums.sort(key=sort,reverse=request.form["reverse"]=="True")
+            return render_template('results.html', artist=artist_name, albums=albums, oldSort=request.form["sort"], reverse=isReversed)
+        else:
+            albums.sort(key=sort,reverse=False)
+            if "sort" in request.form:
+                return render_template('results.html', artist=artist_name, albums=albums, oldSort=request.form["sort"], reverse=False)
+            else:
+                return render_template('results.html', artist=artist_name, albums=albums,reverse=False)
+
     return render_template('index.html')
 
 
