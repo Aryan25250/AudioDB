@@ -1,9 +1,10 @@
 <!doctype html>
 <html>
   <head>
+          <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}"/>
     <title>Music Albums Search</title>
   </head>
-  <body>
+  <body style="text-align: center">
     <h1>Albums for {{ artist }}</h1>
     <table>
       <thead>
@@ -15,15 +16,18 @@
               <input type="hidden" name="oldSort" value= {{ oldSort }}>
               <input type="hidden" name="reverse" value={{ reverse }}>
 
-              <button type="submit">
-                  {% if oldSort == "strAlbum" %}
+              <a href="#" onclick="this.parentNode.submit(); return false" type="submit">
+                  <b>{% if oldSort == "strAlbum" %}
                       {% if reverse == True %}
-                      ^
+                      (^)
                       {%else%}
-                      V
+                      (v)
                       {%endif%}
                   {%endif%}
-                Album Name</button>
+                  {% if not oldSort %}
+                  (v)
+                  {%endif%}
+                Album Name</b></a>
             </form>
           </th>
           <th>
@@ -32,15 +36,15 @@
               <input type="hidden" name="sort" value="intYearReleased">
               <input type="hidden" name="oldSort" value= {{ oldSort }}>
               <input type="hidden" name="reverse" value={{ reverse }}>
-              <button type="submit">
-                   {% if oldSort == "intYearReleased" %}
+              <a href="#" style="white-space:nowrap" onclick="this.parentNode.submit(); return false" type="submit">
+                   <b>{% if oldSort == "intYearReleased" %}
                       {% if reverse == True %}
-                      ^
+                      (^)
                       {%else%}
-                      V
+                      (v)
                       {%endif%}
                   {%endif%}
-                  Release Year</button>
+                  Release Year</b></a>
             </form>
           </th>
          <th>
@@ -49,15 +53,15 @@
               <input type="hidden" name="sort" value="strDescriptionEN">
               <input type="hidden" name="oldSort" value= {{ oldSort }}>
               <input type="hidden" name="reverse" value={{ reverse }}>
-              <button type="submit">
-                  {% if oldSort == "strDescriptionEN" %}
+              <a href="#" onclick="this.parentNode.submit(); return false" type="submit">
+                  <b>{% if oldSort == "strDescriptionEN" %}
                       {% if reverse == True %}
-                      ^
+                      (^)
                       {%else%}
-                      V
+                      (v)
                       {%endif%}
                   {%endif%}
-                  Description</button>
+                  Description</b></a>
             </form>
           </th>
         </tr>

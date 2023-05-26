@@ -22,7 +22,10 @@ def index():
         if "reverse" in request.form:
             isReversed = True
             if request.form["oldSort"] == request.form["sort"]:
-                isReversed = not request.form["reverse"] == "True"
+                if request.form["reverse"] == "True":
+                    isReversed = False
+                else:
+                    isReversed = True
 
             print(isReversed)
 

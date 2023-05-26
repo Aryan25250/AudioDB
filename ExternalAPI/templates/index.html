@@ -1,14 +1,17 @@
 <!doctype html>
 <html>
   <head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}"/>
     <title>Music Albums Search</title>
   </head>
   <body>
-    <h1>Search for Music Albums</h1>
-    <form action="/" method="post">
-      <label for="artist">Artist Name:</label>
-      <input type="text" name="artist" required>
-      <button type="submit">Search</button>
-    </form>
+    <div class="searchDiv">
+      <h1>Search Albums</h1>
+      <form action="/" method="post">
+        <label for="artist">Artist Name:</label>
+        <input type="text" name="artist" required>
+        <button class="searchButton" type="submit"><img src="/ExternalAPI/static/assets/search-icon.png" style="width:30px"></button>
+      </form>
+    </div>
   </body>
 </html>
